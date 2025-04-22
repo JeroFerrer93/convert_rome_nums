@@ -8,6 +8,9 @@ def roman_to_int(numeral):
     prev_value = 0
 
     for char in reversed(numeral.upper()):
+        if char not in roman_dict:
+            print(f"⚠️ Carácter inválido: '{char}'")
+            return None
         value = roman_dict[char]
         if value < prev_value:
             total -= value
@@ -17,8 +20,17 @@ def roman_to_int(numeral):
 
     return total
 
-numeral_input = input("Enter the roman numerals you want to convert: ")
+# Agregamos esta línea como introducción:
+print("ℹ️ Los números romanos son:\nI = 1\nV = 5\nX = 10\nL = 50\nC = 100\nD = 500\nM = 1000\n")
+
+numeral_input = input("📝 Ingresá los números romanos que querés convertir: ")
+
 result = roman_to_int(numeral_input)
-print(f"The roman numerals you entered translates to: {result}!")
+
+if result is not None:
+    print(f"✅ El número decimal equivalente es: {result}!")
+else:
+    print("❌ Ingreso inválido. Por favor usá solo caracteres romanos válidos.")
+
 
 
